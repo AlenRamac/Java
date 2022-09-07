@@ -11,7 +11,7 @@ public class Zadatak03 {
 		
 		int x = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj"));
 		if (x<1 || x>99) {
-			System.out.println("Nepravilan unos");
+			System.out.println("Nepravilan unos!");
 		}else {
 			System.out.println(x/10 +" "+ x%10);
 		}
