@@ -33,10 +33,24 @@ public class Zadatak02 {
 					a += (i+1);
 				}
 			}
+
 			for (int i = 0; i < tablica.length; i++) {
-				System.out.println(Arrays.toString(tablica[i]));
+				for (int j = 0; j < tablica[0].length; j++) {
+					//jednoznamenkasti
+					if (tablica[i][j] < 10) {
+						System.out.print("   " + tablica[i][j]);	
+					}
+					//dvoznamenkasti
+					if (tablica[i][j] > 9 && tablica[i][j] < 100) {
+						System.out.print("  " + tablica[i][j]);	
+					}
+					//troznamekasti
+					if (tablica[i][j] > 99 && tablica[i][j] < 1000) {
+						System.out.print(" " + tablica[i][j]);	
+					}
+				}
+				System.out.println();
 			}
-			
 		}
 		
 	}
