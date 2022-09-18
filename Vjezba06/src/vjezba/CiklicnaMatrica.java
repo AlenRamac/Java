@@ -79,13 +79,7 @@ public class CiklicnaMatrica {
 					break;
 				}
 			}
-			
-//			gore
-//			if ((float)x/2 != 0 && x>4) {
-//				if(b>x/2-2) {
-//					c3++;
-//				}
-//			}
+
 			if (x>4) {
 				if(b>0) {
 					c3++;
