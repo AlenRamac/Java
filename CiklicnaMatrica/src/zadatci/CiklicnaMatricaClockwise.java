@@ -10,18 +10,21 @@ public class CiklicnaMatricaClockwise {
 		while (true) {
 			try {
 				x = Integer.parseInt(JOptionPane.showInputDialog("Broj redaka"));
+				if (x<=0) {
+					JOptionPane.showMessageDialog(null, "Unesi prirodni broj!");
+					continue;
+				}
 				y = Integer.parseInt(JOptionPane.showInputDialog("Broj stupaca"));
+				if (y<=0) {
+					JOptionPane.showMessageDialog(null, "Unesi prirodni broj!");
+					continue;
+				}
 				break;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Unesi prirodni broj!");
 			}
 		}
-		if (x>0 && y>0){
-			ciklicnaMatrica(x, y);
-		}else {
-			System.out.println("Unesi brojeve vece od 0!");
-		}
-		
+		ciklicnaMatrica(x, y);
 	}
 	
 	public void ciklicnaMatrica (int x, int y) {
