@@ -1,41 +1,54 @@
 package stuff;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kalkulator {
 
 	public Kalkulator() {
 		unosiBrojanje();
-//		System.out.println(spoji("John", "Jenny"));
 	}
-	
-	public int[] brojacSlova(String ime1, String ime2) {
+
+
+	public void brojacSlova(String ime1, String ime2) {
 		int[] imeInt = new int[ime1.length()+ime2.length()+1];
-		char[] chars = spoji(ime1, ime2);
+		char[] chars = spojiString(ime1, ime2);
+		String a;
+		String b;
+		int[] prvoInt = new int[ime1.length()];
+		int[] drugoInt = new int[ime2.length()];
+		
 		for (int i = 0; i < chars.length; i++) {
 			imeInt[i]=0;
 			for (int j = 0; j < chars.length; j++) {
-				if(chars[i]==chars[j]) {
+				a = Character.toString(chars[i]);
+				b = Character.toString(chars[j]);
+				if(a.compareToIgnoreCase(b)==0) {
 					imeInt[i]++;
 				}
 			}
 		}
-		imeInt[ime1.length()]=9;
-//		for (int i = 0; i < ime2.length(); i++) {
-//			imeInt[i+ime1.length()+1]=1;
-//			for (int j = 0; j < chars.length; j++) {
-//				if(chars[i]==chars[j]) {
-//					imeInt[i+ime1.length()]++;
-//				}
-//			}
-//			imeInt[i+ime1.length()]--;
-//		}
-//		
-		return imeInt;
+		for (int i = 0; i < ime1.length(); i++) {
+			prvoInt[i]=imeInt[i];
+			System.out.print(prvoInt[i]);
+		}
+		
+		System.out.print(" ");
+		
+		for (int i = 0; i < ime2.length(); i++) {
+			drugoInt[i]=imeInt[i+ime1.length()+1];
+			System.out.print(drugoInt[i]);
+		}
+		System.out.println();
+		List<Integer> zbrojeno = zbroj(prvoInt, drugoInt);
+		for(int x:zbrojeno) {
+			System.out.print(x);
+		}
 	}
 	
 	
-	public char[] spoji(String ime1, String ime2) {
+	public char[] spojiString(String ime1, String ime2) {
 		char[] spojeno = new char[ime1.length()+ime2.length()+1];
 		for (int i = 0; i < ime1.length(); i++) {
 			spojeno[i]=ime1.charAt(i);
@@ -50,32 +63,33 @@ public class Kalkulator {
 	public void unosiBrojanje() {
 		String prvo = JOptionPane.showInputDialog("Prvo ime:");
 		String drugo = JOptionPane.showInputDialog("Drugo ime:");
-//		String prvo="John";
-//		String drugo="Jenny";
-		System.out.println(spoji(prvo, drugo));
-//		for (int i = 0; i < brojacSlova(prvo, drugo).length; i++) {
-//			System.out.print(brojacSlova(prvo, drugo)[i]);
-//		}
-//		System.out.println();
-		kalkuliranje((brojacSlova(prvo, drugo)), prvo, drugo);
+		System.out.println(spojiString(prvo, drugo));
+		brojacSlova(prvo, drugo);
 	}
 	
-	public void kalkuliranje(int[] imeInt, String ime1, String ime2) {
-		int[] prvoInt = new int[ime1.length()];
-		int[] drugoInt = new int[ime2.length()];
-
-		for (int i = 0; i < ime1.length(); i++) {
-			prvoInt[i]=imeInt[i];
-			System.out.print(prvoInt[i]);
+	public List<Integer> zbroj(int[] prva, int[] druga) {
+		
+		int i = druga.length-1;
+		int j = 0;
+		List<Integer> rezultat = new ArrayList<>();
+		
+		for(int a:prva) {
+			prva[j]=a + druga[i];
+			i--;
+			j++;
+			if (i<0) {
+				break;
+			}
 		}
-		
-		System.out.print(" ");
-		
-		for (int i = 0; i < ime2.length(); i++) {
-			drugoInt[i]=imeInt[i+ime1.length()+1];
-			System.out.print(drugoInt[i]);
+		for(int a:prva) {
+			rezultat.add(a);
 		}
-		
+		if (prva.length<druga.length) {
+			for (int k = druga.length-prva.length-1; k >= 0 ; k--) {
+				rezultat.add(druga[k]);
+			}
+		}
+		return rezultat;
 	}
 	
 	public static void main(String[] args) {
