@@ -12,32 +12,32 @@ public class Kalkulator {
 
 
 	public void brojacSlova(String ime1, String ime2) {
-		int[] imeInt = new int[ime1.length()+ime2.length()+1];
-		char[] chars = spojiString(ime1, ime2);
+		int[] imenaInt = new int[ime1.length()+ime2.length()+1];
+		char[] imena = spojiString(ime1, ime2);
 		String a;
 		String b;
 		int[] prvoInt = new int[ime1.length()];
 		int[] drugoInt = new int[ime2.length()];
 		
-		for (int i = 0; i < chars.length; i++) {
-			imeInt[i]=0;
-			for (int j = 0; j < chars.length; j++) {
-				a = Character.toString(chars[i]);
-				b = Character.toString(chars[j]);
+		for (int i = 0; i < imena.length; i++) {
+			imenaInt[i]=0;
+			for (int j = 0; j < imena.length; j++) {
+				a = Character.toString(imena[i]);
+				b = Character.toString(imena[j]);
 				if(a.compareToIgnoreCase(b)==0) {
-					imeInt[i]++;
+					imenaInt[i]++;
 				}
 			}
 		}
 		for (int i = 0; i < ime1.length(); i++) {
-			prvoInt[i]=imeInt[i];
+			prvoInt[i]=imenaInt[i];
 			System.out.print(prvoInt[i]);
 		}
 		
 		System.out.print(" ");
 		
 		for (int i = 0; i < ime2.length(); i++) {
-			drugoInt[i]=imeInt[i+ime1.length()+1];
+			drugoInt[i]=imenaInt[i+ime1.length()+1];
 			System.out.print(drugoInt[i]);
 		}
 		System.out.println();
